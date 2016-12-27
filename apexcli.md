@@ -12,7 +12,7 @@
    operator deploy requests to slave.
 10. Master keeps on monitoring slave using heartbeat protocol.
 
-![launch seq](/home/tushar/work/apex/internals/images/initiallaunchseq.png)
+![launch seq](images/initiallaunchseq.png)
 The details are below
 
 ### Apex cli launch
@@ -33,7 +33,7 @@ The application can be specified as
 
 
 Application Factory is used to prepare an DAG for submission to yarn.
-![AppFactory](/home/tushar/work/apex/internals/images/AppFactory.jpg)
+![AppFactory](images/AppFactory.jpg)
 
 
 ### Master launch
