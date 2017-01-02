@@ -12,6 +12,7 @@ This is in progress book for Apache Apex internals.
 * [Application Submission](apexcli.md)
 * [Master](master.md)
 * [RPC protocol](rpc.md)
+* [Netlet](netlet.md)
 * [StramChild](stramchild.md)
 * [Partitioning](partitioning.md)
 * [Deployment of Operators](deploy.md)
