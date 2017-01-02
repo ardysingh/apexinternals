@@ -7,7 +7,29 @@ Important classes are
 - StreamingContainerParent
 - StreamWebService
 
-## ApplicationMasterService
+# ApplicationMasterService
+
+ Major Roles of ApplicationMasterService:
+ 
+ Init:
+ - Create recovery handlers from Logical Plan.
+    - Read Logical Plan from HDFS (df-conf.ser).
+    - Create recovery directories((FILE_LOG, FILE_LOG_BACKUP,FILE_SNAPSHOT, FILE_SNAPSHOT_BACKUP, FILE_HEARTBEATURI))
+ - Create Plan context (StreamingContainerManager - manages the CheckpointState).
+    - Load the CheckpointState from HDFS.
+    - If CheckpointState is available:
+        - Get CheckpointState from Physical plan and create StreamingContainerManager with this state.
+        - Replay the log.
+        - Restore the checkpoint info by Syncing and updating the checkpoints and get committedWindowId.
+        - Create new container agents (StreamingContainerAgent) for existing containers.
+        - Request new container if not present.
+    - Else CheckpointState is unavailable:
+        - Create StreamingContainerManager with logical dag.
+    - Populate recoveryHandler and checkpoint the state.
+ - Add service NMClientAsync (Communication between Node Manager and  Application Master).
+ - Add service AMRMClient (Communication between Application Master and Resource Manager).
+ - Add service HeartbeatListener(Communication Protocol between Containers and Application Master) 
+ - Add service AppDataTransportAgent (Metrics, mainly Stats collections)
 
 ```
   execute
